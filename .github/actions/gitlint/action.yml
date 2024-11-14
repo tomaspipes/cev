@@ -1,16 +1,12 @@
-name: Gitlint Commit Message Validation
-
-description: |
-  This action runs gitlint to enforce commit message formatting rules.
+name: "GitLint"
+description: "Run GitLint to enforce commit message standards"
+author: "Your Name"
 
 runs:
   using: "docker"
-  image: "ghcr.io/jorisroovers/gitlint:latest"  # Uses the official Gitlint Docker image
+  image: "ghcr.io/jorisroovers/gitlint:v0.15.0"  # Directly specify the Docker image here
   args:
     - "--config"
-    - ".gitlint"  # Path to the .gitlint config
-    - "lint"  # Lint the commit messages
-
-permissions:
-  contents: read  # Required to access the commit history
+    - ".gitlint"
+    - "lint"
 

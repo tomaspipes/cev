@@ -1,0 +1,27 @@
+name: Lint Commit Messages
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Authenticate with GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
+
+      - name: Set up Gitlint
+        uses: ./.github/actions/gitlint  # Path to your custom action
+
+      - name: Run Gitlint
+        run: gitlint --config .gitlint lint  # Run GitLint with your custom configuration
+
