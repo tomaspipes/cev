@@ -1,0 +1,30 @@
+# Available rules:
+#
+#   T1: title-max-length
+#   T2: title-trailing-whitespace
+#   T3: title-trailing-punctuation (disabled)
+#   T4: title-hard-tab
+#   T5: title-must-not-contain-word (disabled)
+#   T6: title-leading-whitespace
+#   T7: title-match-regex (disabled)
+#   B1: body-max-line-length
+#   B2: body-trailing-whitespace
+#   B3: body-hard-tab
+#   B4: body-first-line-empty
+#   B5: body-min-length (disabled)
+#   B6: body-is-missing (disabled)
+#   B7: body-changed-file-mention (disabled)
+#
+# See http://jorisroovers.github.io/gitlint/rules/ for a full description.
+
+[general]
+# Specify the line length
+ignore =T3,T5,T7,B1,B5,B7
+regex-style-search=True
+
+[body-match-regex]
+regex=(?:close[sd]?|fix(?:es|ed)?|resolve[sd]?)\s*(?:[a-zA-Z-_]+(?:/[a-zA-Z-_]+)*?)?#(\d+)|none
+
+[ignore-by-title]
+# Custom rules for your specific bullet format
+regex=(_+)(^Revert |^Merge )
