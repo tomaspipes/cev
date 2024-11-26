@@ -11,5 +11,7 @@ public class Main {
         
         gc.getGame(game);
         sc.close();
+        
+        //Olá 
     }
 }
