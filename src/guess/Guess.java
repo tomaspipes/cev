@@ -1,13 +1,15 @@
-package src;
+package src.guess;
+
+import src.Game;
 
 public class Guess implements Game{
  
     public Guess(){
-        gameLogic();
+        start();
     }
 
     @Override
-    public void gameLogic(){
+    public void start(){
         System.out.println("Something");
     }
 
