@@ -7,6 +7,7 @@ public class PlayerTicTacToe extends Player {
 
     public PlayerTicTacToe(String name, char symbol) {
         super(name);
+        this.symbol = symbol;
     }
 
     public char getSymbol() {

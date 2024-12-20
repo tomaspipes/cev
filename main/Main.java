@@ -15,8 +15,7 @@ public class Main {
 
         GameFactory gameFactory = new GameFactory();
         try {
-            Game selectedGame = gameFactory.getGame(gameType);
-            selectedGame.start(); // Start the chosen game
+            gameFactory.getGame(gameType);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

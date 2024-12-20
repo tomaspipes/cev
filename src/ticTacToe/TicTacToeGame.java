@@ -17,7 +17,7 @@ public class TicTacToeGame implements Game {
     }
     @Override
     public void start(){
-       GUI gui = new GUI(this);
+       new GUI(this);
     }
 
     public Board getBoard() {
