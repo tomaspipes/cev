@@ -8,10 +8,10 @@ public class TicTacToeGame implements Game {
     private PlayerTicTacToe player2;
     private PlayerTicTacToe currentPlayer;
 
-    public TicTacToeGame(PlayerTicTacToe player1, PlayerTicTacToe player2, int boardSize) {
-        this.board = new Board(boardSize);
-        this.player1 = new PlayerTicTacToe(player1.getName(), 'X');
-        this.player2 = new PlayerTicTacToe(player2.getName(), 'O');
+    public TicTacToeGame(PlayerTicTacToe player1, PlayerTicTacToe player2) {
+        this.board = new Board(3);
+        this.player1 = player1;
+        this.player2 = player2;
         this.currentPlayer = player1;
         start();
     }

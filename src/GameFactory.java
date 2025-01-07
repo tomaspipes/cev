@@ -18,7 +18,7 @@ public class GameFactory{
         else if(gameType.equalsIgnoreCase("TICTACTOE")){
             PlayerTicTacToe player1 = new PlayerTicTacToe("Tomás", 'X');
             PlayerTicTacToe player2 = new PlayerTicTacToe("Silvia", 'O');
-            return new TicTacToeGame(player1, player2, 3);
+            return new TicTacToeGame(player1, player2);
         }else {
             throw new IllegalArgumentException("Please choose between Guess, Hangman OR TicTacToe");
         }
