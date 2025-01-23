@@ -6,7 +6,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import src.Player;
-import src.guess.GuessGUI;
+import src.guess.GuessGame;
 import src.ticTacToe.TicTacToeGame;
 
 import javax.swing.*;
@@ -17,6 +17,7 @@ import javax.swing.*;
 	    private JTextField nameField;
 	    private JButton startButton, guessTheNumberButton, hangmanButton, ticTacToeButton;
 	    public Player player; // Classe Player que guarda o nome do jogador
+	    public Player player2; // Classe Player que guarda o nome do jogador
 	    private final Color panelBackgroundColor = new Color(224, 224, 224);
 	    
 	    public GameHub() {
@@ -82,7 +83,19 @@ import javax.swing.*;
 	        // Adiciona o painel à janela e torna visível
 	        window.add(panel);
 	        window.setVisible(true);
-	    }
+	    } 
+        
+
+    //  private void handlePlayerCreation() {
+    //      String playerName = nameField.getText();
+    //      if (playerName.isEmpty()) {
+    //          JOptionPane.showMessageDialog(window, "Por favor, insira um nome!", "Erro", JOptionPane.ERROR_MESSAGE);
+    //      } else {
+    //          player = new Player(playerName); // Cria apenas o jogador 1
+    //          showGameSelectionWindow(); // Mostra a tela de seleção de jogo
+    //          window.dispose(); // Fecha a janela atual
+    //      }
+    //  }
 
 	    private void showGameSelectionWindow() {
 	        // Nova Janela - Seleção de Jogo
@@ -110,8 +123,8 @@ import javax.swing.*;
 	        guessTheNumberButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                new GuessGUI(player); // Inicia o jogo "Guess the Number"
-	                gameWindow.dispose(); // Fecha a janela de seleção de jogo
+                    new GuessGame(player);
+                    gameWindow.dispose(); // Fecha a janela de seleção de jogo
 	            }
 	        });
 	        gamePanel.add(guessTheNumberButton);
@@ -133,11 +146,9 @@ import javax.swing.*;
 	        ticTacToeButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-                    Player player1 = new Player("Tomás");
-                    Player player2 = new Player("Silvia");
-                    player1.setSymbol('X');
+                    player.setSymbol('X');
                     player2.setSymbol('O');
-	                new TicTacToeGame(player1, player2); // Inicia o jogo "Tic Tac Toe"
+	                new TicTacToeGame(player, player2); // Inicia o jogo "Tic Tac Toe"
                     gameWindow.dispose(); // Fecha a janela de seleção de jogo
                 }
 	        });
@@ -148,7 +159,4 @@ import javax.swing.*;
 	        gameWindow.setVisible(true);
 	    }
 
-	    public static void main(String[] args) {
-	        new GameHub(); // Inicia o Hub de Jogos
-	    }
 	}

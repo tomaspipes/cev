@@ -1,22 +1,39 @@
 package src.guess;
 
 import java.util.Random;
+import src.guess.GuessGUI;
+import src.Game;
+import src.Player;
 
-public class GuessGame {
+public class GuessGame implements Game{
 	private int randomNumber;
 	private int tries;
 	private int range;
 	private Random rand;
-	
-	public GuessGame(int range) {
-		this.range = range;
-		rand = new Random();
-		randomNumber = rand.nextInt(range) + 1;
-		tries = 0;
-	}
-	
+    private GuessGUI gui;
+    private Player player;
+
+    public GuessGame(Player player) {
+        this.player = player;
+        start();
+    }
+
+    @Override
+    public void start() {
+        new GuessGUI(this);
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
 	public int getTries() {
 		return tries;
+	}
+
+    public int incrementTries() {
+		tries++;
+        return tries;
 	}
 	
 	public int getRange() {
@@ -39,6 +56,9 @@ public class GuessGame {
 	public boolean isLower(int guess) {
 		return guess > randomNumber;
 	}
-	
+
+	public Player getCurrentPlayer() {
+        return player;
+    }
 	
 }

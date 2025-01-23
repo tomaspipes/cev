@@ -3,6 +3,7 @@ package src;
 public class Player {
     private String name;
     private char symbol;
+    private int range;
 
     public Player(String name) {
         this.name = name;
@@ -25,4 +26,12 @@ public class Player {
         this.symbol = symbol; 
     }
 
- }
+    // For the Guess game
+    public void setRange(int range) {
+        this.range = range; 
+    }
+
+    public int getRange() {
+        return range;
+    }
+}
