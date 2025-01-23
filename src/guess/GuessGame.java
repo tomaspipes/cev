@@ -1,14 +1,14 @@
-package guess;
+package src.guess;
 
 import java.util.Random;
 
-public class Game {
+public class GuessGame {
 	private int randomNumber;
 	private int tries;
 	private int range;
 	private Random rand;
 	
-	public Game(int range) {
+	public GuessGame(int range) {
 		this.range = range;
 		rand = new Random();
 		randomNumber = rand.nextInt(range) + 1;

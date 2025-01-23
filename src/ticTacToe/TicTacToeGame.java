@@ -1,14 +1,15 @@
 package src.ticTacToe;
 
 import src.Game;
+import src.Player;
 
 public class TicTacToeGame implements Game {
     private Board board;
-    private PlayerTicTacToe player1;
-    private PlayerTicTacToe player2;
-    private PlayerTicTacToe currentPlayer;
+    private Player player1;
+    private Player player2;
+    private Player currentPlayer;
 
-    public TicTacToeGame(PlayerTicTacToe player1, PlayerTicTacToe player2) {
+    public TicTacToeGame(Player player1, Player player2) {
         this.board = new Board(3);
         this.player1 = player1;
         this.player2 = player2;
@@ -17,14 +18,14 @@ public class TicTacToeGame implements Game {
     }
     @Override
     public void start(){
-       new GUI(this);
+       new TicTacToeGUI(this);
     }
 
     public Board getBoard() {
         return board;
     }
 
-    public PlayerTicTacToe getCurrentPlayer() {
+    public Player getCurrentPlayer() {
         return currentPlayer;
     }
 

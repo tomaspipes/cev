@@ -1,10 +1,13 @@
-package guess;
-
-	import java.awt.*;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
+package main;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import src.Player;
+import src.guess.GuessGUI;
+import src.ticTacToe.TicTacToeGame;
 
 import javax.swing.*;
 
@@ -107,7 +110,7 @@ import javax.swing.*;
 	        guessTheNumberButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                new GuessTheNumber(player); // Inicia o jogo "Guess the Number"
+	                new GuessGUI(player); // Inicia o jogo "Guess the Number"
 	                gameWindow.dispose(); // Fecha a janela de seleção de jogo
 	            }
 	        });
@@ -130,8 +133,13 @@ import javax.swing.*;
 	        ticTacToeButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                JOptionPane.showMessageDialog(gameWindow, "Tic Tac Toe ainda não está implementado!");
-	            }
+                    Player player1 = new Player("Tomás");
+                    Player player2 = new Player("Silvia");
+                    player1.setSymbol('X');
+                    player2.setSymbol('O');
+	                new TicTacToeGame(player1, player2); // Inicia o jogo "Tic Tac Toe"
+                    gameWindow.dispose(); // Fecha a janela de seleção de jogo
+                }
 	        });
 	        gamePanel.add(ticTacToeButton);
 

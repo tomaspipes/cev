@@ -1,12 +1,13 @@
-package guess;
+package src.guess;
 
-public class Player {
+import src.Player;
+
+public class PlayerGuess extends Player{
     private String name;
    // private char symbol;
 
-    public Player(String name) { // char symbol
+    public PlayerGuess(String name) { 
         this.name = name;
-        //this.symbol = symbol;
     }
 
     public String getName() {
