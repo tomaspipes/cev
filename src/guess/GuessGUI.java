@@ -1,4 +1,6 @@
-package guess;
+package src.guess;
+
+import src.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
-public class GuessTheNumber {
+public class GuessGUI {
     private JFrame window;
     private JPanel panel, lowPanel, gamePanel;
     private JTextField guessField;
@@ -17,12 +19,12 @@ public class GuessTheNumber {
     private int range, difficulty, guess;
     private JTextArea historyArea;
     private JScrollPane scrollPane;
-    private Game game;
+    private GuessGame game;
     private Player player;
     
     private final Color panelBackgroundColor = new Color(224, 224, 224);
 
-    public GuessTheNumber(Player player) {
+    public GuessGUI(Player player) {
     	this.player = player;
     	//configura frame
     	window = new JFrame("Guess the Number");
@@ -77,9 +79,8 @@ public class GuessTheNumber {
          panel.add(difficultyLabel);
          panel.add(difficultyBox);
          panel.add(startButton);
-         
-        
          }
+
          private void startGame() {
         		 
         	difficulty = difficultyBox.getSelectedIndex();
@@ -89,8 +90,8 @@ public class GuessTheNumber {
         	            case 2 -> range = 500;
         	            case 3 -> range = 1000;
         	            default -> range = 100;}
-        	        
-        	        game = new Game(range);
+
+        	        game = new GuessGame(range);
                             
                     setupGamePanel();         
          }

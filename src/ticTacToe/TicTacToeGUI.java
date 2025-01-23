@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI extends JFrame {
+public class TicTacToeGUI extends JFrame {
     private TicTacToeGame game;
     private JButton[][] buttons;
     private JLabel statusLabel;
 
-    public GUI(TicTacToeGame game) {
+    public TicTacToeGUI(TicTacToeGame game) {
         this.game = game;
         int boardSize = game.getBoard().getSize();
         buttons = new JButton[boardSize][boardSize];
