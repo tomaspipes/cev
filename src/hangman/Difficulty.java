@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Difficulty_WordChosing {
+public class Difficulty{
     // Word lists for each difficulty
     private String[] easyWords = {
             "Cao", "Gato", "Sol", "Lua", "Casa", "Carro", "Livro", "Bola", "Peixe", "Arvore",
@@ -39,7 +39,7 @@ public class Difficulty_WordChosing {
     private String difficulty; // Selected difficulty level
 
     // Constructor initializes chosenWord to null
-    public Difficulty_WordChosing() {
+    public Difficulty() {
         this.chosenWord = null;
     }
 

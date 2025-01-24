@@ -1,154 +1,144 @@
 package main;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
+import javax.swing.*;
 import src.Player;
 import src.guess.GuessGUI;
 import src.ticTacToe.TicTacToeGame;
+//import src.hangman.HangmanGame;
+//import src.hangman.HangmanPanel;
 
-import javax.swing.*;
+public class GameHub {
 
-	public class GameHub {
-	    private JFrame window;
-	    private JPanel panel;
-	    private JTextField nameField;
-	    private JButton startButton, guessTheNumberButton, hangmanButton, ticTacToeButton;
-	    public Player player; // Classe Player que guarda o nome do jogador
-	    private final Color panelBackgroundColor = new Color(224, 224, 224);
-	    
-	    public GameHub() {
-	        // Primeira Janela - Solicitar o nome
-	        window = new JFrame("Hub de Jogos do IADE");
-	        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        window.setSize(800, 600);
-	        window.setLocationRelativeTo(null);
+    private JFrame window;
+    private JPanel panel;
+    private JButton guessTheNumberButton, hangmanButton, ticTacToeButton;
+    private Player player1, player2;
+    private final Color panelBackgroundColor = new Color(224, 224, 224);
 
-	        // Painel para a janela inicial
-	        panel = new JPanel();
-	        panel.setLayout(new GridLayout(4, 1, 10, 10));
-	        panel.setBackground(panelBackgroundColor);
+    public GameHub() {
+        // Primeira Janela - Seleção de Jogo
+        window = new JFrame("Hub de Jogos do IADE");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(800, 600);
+        window.setLocationRelativeTo(null);
 
-	        // Título do Hub
-	        JLabel welcomeLabel = new JLabel("Bem-vindo ao Hub de Jogos do IADE", SwingConstants.CENTER);
-	        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 36));
-	        panel.add(welcomeLabel);
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 1, 10, 10));
+        panel.setBackground(panelBackgroundColor);
 
-	        JLabel nameLabel = new JLabel("Qual é o nome do jogador?", SwingConstants.CENTER);
-	        nameLabel.setFont(new Font("Arial", Font.PLAIN, 24));
-	        panel.add(nameLabel);
+        JLabel welcomeLabel = new JLabel("Welcome to IADE Games Hub", SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Calibri", Font.BOLD, 36));
+        panel.add(welcomeLabel);
 
-	        nameField = new JTextField();
-	        nameField.setFont(new Font("Arial", Font.PLAIN, 24));
-	        panel.add(nameField);
+        JLabel gameChoiceLabel = new JLabel("Que jogo quer jogar?", SwingConstants.CENTER);
+        gameChoiceLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        panel.add(gameChoiceLabel);
 
-	        // Botão para começar
-	        startButton = new JButton("Iniciar");
-	        startButton.setFont(new Font("Arial", Font.BOLD, 24));
-	        startButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                String playerName = nameField.getText();
-	                if (playerName.isEmpty()) {
-	                    JOptionPane.showMessageDialog(window, "Por favor, insira um nome!", "Erro", JOptionPane.ERROR_MESSAGE);
-	                } else {
-	                    player = new Player(playerName); // Cria o jogador com o nome
-	                    showGameSelectionWindow(); // Mostra a tela de seleção de jogo
-	                    window.dispose(); // Fecha a janela atual
-	                }
-	            }
-	        });
-	        nameField.addKeyListener(new KeyAdapter() {
-	            @Override
-	            public void keyPressed(KeyEvent e) {
-	                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-	                    // Este código será executado quando a tecla "Enter" for pressionada
-	                    String playerName = nameField.getText();
-	                    if (playerName.isEmpty()) {
-	                        JOptionPane.showMessageDialog(window, "Por favor, insira um nome!", "Erro", JOptionPane.ERROR_MESSAGE);
-	                    } else {
-	                        player = new Player(playerName); // Cria o jogador com o nome
-	                        showGameSelectionWindow(); // Mostra a tela de seleção de jogo
-	                        window.dispose(); // Fecha a janela atual
-	                    }
-	                }
-	            }
-	        });
-	        
-	        panel.add(startButton);
+        // Botão para "Guess the Number"
+        guessTheNumberButton = new JButton("Guess the Number");
+        guessTheNumberButton.setFont(new Font("Arial", Font.BOLD, 24));
+        guessTheNumberButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                requestPlayerName(1, "Guess the Number");
+            }
+        });
+        panel.add(guessTheNumberButton);
 
-	        // Adiciona o painel à janela e torna visível
-	        window.add(panel);
-	        window.setVisible(true);
-	    }
+        // Botão para "Hangman"
+        hangmanButton = new JButton("Hangman");
+        hangmanButton.setFont(new Font("Arial", Font.BOLD, 24));
+        hangmanButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                requestPlayerName(1, "Hangman");
+            }
+        });
+        panel.add(hangmanButton);
 
-	    private void showGameSelectionWindow() {
-	        // Nova Janela - Seleção de Jogo
-	        JFrame gameWindow = new JFrame("Escolha seu Jogo");
-	        gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	        gameWindow.setSize(800, 600);
-	        gameWindow.setLocationRelativeTo(null);
+        // Botão para "Tic Tac Toe"
+        ticTacToeButton = new JButton("Tic Tac Toe");
+        ticTacToeButton.setFont(new Font("Arial", Font.BOLD, 24));
+        ticTacToeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                requestPlayerName(2, "Tic Tac Toe");
+            }
+        });
+        panel.add(ticTacToeButton);
 
-	        JPanel gamePanel = new JPanel();
-	        gamePanel.setLayout(new GridLayout(5, 1, 10, 10));
-	        gamePanel.setBackground(panelBackgroundColor);
+        window.add(panel);
+        window.setVisible(true);
+    }
 
-	        // Boas-vindas ao jogador
-	        JLabel welcomeMessage = new JLabel("Bem-vindo " + player.getName(), SwingConstants.CENTER);
-	        welcomeMessage.setFont(new Font("Arial", Font.BOLD, 36));
-	        gamePanel.add(welcomeMessage);
+    private void requestPlayerName(int playerCount, String game) {
+        JFrame nameWindow = new JFrame("Jogador(es)");
+        nameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        nameWindow.setSize(400, 300);
+        nameWindow.setLocationRelativeTo(null);
 
-	        JLabel gameChoiceLabel = new JLabel("Que jogo quer jogar?", SwingConstants.CENTER);
-	        gameChoiceLabel.setFont(new Font("Arial", Font.PLAIN, 24));
-	        gamePanel.add(gameChoiceLabel);
+        JPanel namePanel = new JPanel();
+        namePanel.setLayout(new GridLayout(playerCount + 2, 1, 10, 10));
+        namePanel.setBackground(panelBackgroundColor);
 
-	        // Botão para "Guess the Number"
-	        guessTheNumberButton = new JButton("Guess the Number");
-	        guessTheNumberButton.setFont(new Font("Arial", Font.BOLD, 24));
-	        guessTheNumberButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                new GuessGUI(player); // Inicia o jogo "Guess the Number"
-	                gameWindow.dispose(); // Fecha a janela de seleção de jogo
-	            }
-	        });
-	        gamePanel.add(guessTheNumberButton);
+        JLabel instructionLabel = new JLabel("Insira o nome do(s) jogador(es):", SwingConstants.CENTER);
+        instructionLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        namePanel.add(instructionLabel);
 
-	        // Botão para "Hangman" (a ser implementado)
-	        hangmanButton = new JButton("Hangman");
-	        hangmanButton.setFont(new Font("Arial", Font.BOLD, 24));
-	        hangmanButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                JOptionPane.showMessageDialog(gameWindow, "Hangman ainda não está implementado!");
-	            }
-	        });
-	        gamePanel.add(hangmanButton);
+        JTextField player1Field = new JTextField();
+        player1Field.setFont(new Font("Arial", Font.PLAIN, 18));
+        namePanel.add(player1Field);
 
-	        // Botão para "Tic Tac Toe" (a ser implementado)
-	        ticTacToeButton = new JButton("Tic Tac Toe");
-	        ticTacToeButton.setFont(new Font("Arial", Font.BOLD, 24));
-	        ticTacToeButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-                    Player player1 = new Player("Tomás");
-                    Player player2 = new Player("Silvia");
+        JTextField player2Field = null;
+        if (playerCount == 2) {
+            player2Field = new JTextField();
+            player2Field.setFont(new Font("Arial", Font.PLAIN, 18));
+            namePanel.add(player2Field);
+        }
+
+        JButton startGameButton = new JButton("Iniciar Jogo");
+        startGameButton.setFont(new Font("Arial", Font.BOLD, 18));
+        JTextField finalPlayer2Field = player2Field;
+        startGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name1 = player1Field.getText();
+                if (name1.isEmpty() || (playerCount == 2 && finalPlayer2Field.getText().isEmpty())) {
+                    JOptionPane.showMessageDialog(nameWindow, "Por favor, insira o(s) nome(s)!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                player1 = new Player(name1);
+                if (playerCount == 2) {
+                    player2 = new Player(finalPlayer2Field.getText());
                     player1.setSymbol('X');
                     player2.setSymbol('O');
-	                new TicTacToeGame(player1, player2); // Inicia o jogo "Tic Tac Toe"
-                    gameWindow.dispose(); // Fecha a janela de seleção de jogo
                 }
-	        });
-	        gamePanel.add(ticTacToeButton);
 
-	        // Adiciona o painel à janela e torna visível
-	        gameWindow.add(gamePanel);
-	        gameWindow.setVisible(true);
-	    }
+                nameWindow.dispose();
+                startGame(game);
+            }
+        });
 
-	    public static void main(String[] args) {
-	        new GameHub(); // Inicia o Hub de Jogos
-	    }
-	}
+        namePanel.add(startGameButton);
+        nameWindow.add(namePanel);
+        nameWindow.setVisible(true);
+    }
+
+    private void startGame(String game) {
+        switch (game) {
+            case "Guess the Number":
+                new GuessGUI(player1);
+                break;
+            case "Hangman":
+                //JOptionPanel.showMessageDialog(gameWindow, "Hangman ainda não está implementado!");
+                break;
+            case "Tic Tac Toe":
+                new TicTacToeGame(player1, player2);
+                break;
+        }
+    }
+}
