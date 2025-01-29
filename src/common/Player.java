@@ -1,4 +1,4 @@
-package hangman;
+package common;
 
 public class Player {
     private String name;
@@ -9,5 +9,9 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

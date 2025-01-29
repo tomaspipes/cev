@@ -7,6 +7,7 @@ public class HangmanPanel extends JPanel {
     private int triesLeft;
 
     public HangmanPanel() {
+    	super();
         this.triesLeft = 10; // Número de tentativas iniciais
     }
 

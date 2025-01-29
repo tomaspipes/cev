@@ -1,27 +1,33 @@
 package hangman;
 
 import javax.swing.*;
+
+import common.Player;
+
 import java.awt.*;
 
 public class GameGUI {
-    private JFrame mainFrame;
-    private JPanel mainPanel;
+    private static JFrame mainFrame;
+    private static JPanel mainPanel;
+    private static DifficultyWordChosing difficultyWordChosing;
     
          
     public GameGUI() {
         setupMainFrame();
+        this.difficultyWordChosing = new DifficultyWordChosing();
     }
 
-    void setupMainFrame() {
+    static void setupMainFrame() {
         mainFrame = new JFrame("Hangman Game");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1000, 1000);
+        mainFrame.setSize(900, 450);
+        mainFrame.setResizable(false);
         mainFrame.setLocationRelativeTo(null);
         
-        mainPanel = new JPanel(null);  // Use null layout manager for precise control over component positioning
-
-        
-
+        setupMainPanel();
+    }
+   
+    static void setupMainPanel() {
         mainPanel = new JPanel(new BorderLayout());
         JLabel welcomeLabel = new JLabel("Bem-Vindo ao Hangman!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -32,15 +38,18 @@ public class GameGUI {
         
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        
+        //Se tiver que adicionar menu para escolha do jogador, nesta linha a seguir:
+        //Em vez de chamar showDifficultySelection -> chama choosePlayerName()
         startButton.addActionListener(e -> showDifficultySelection(startButton));
         startButton.setBounds(450, 600, 100, 50);
-        mainFrame.add(startButton);
+        mainFrame.add(startButton, BorderLayout.SOUTH );
     
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
 
-    private void showDifficultySelection(JButton startButton) {
+    private static void showDifficultySelection(JButton startButton) {
     	mainPanel.removeAll();
        
     	startButton.setVisible(false); // Remove the start button from the panel
@@ -77,8 +86,11 @@ public class GameGUI {
         
         
 
-    private void startGame(String difficulty) {
-        String word = "JAVA"; // Você pode ajustar com base na dificuldade escolhida
+    private static void startGame(String difficulty) {
+        difficultyWordChosing.getRandomWord(difficulty);
+        
+        String word = difficultyWordChosing.getChosenWord();
+        
         Player player = new Player("Jogador");
         new Game(mainPanel, player, word);
     }

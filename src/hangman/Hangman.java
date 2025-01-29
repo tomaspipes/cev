@@ -1,6 +1,5 @@
-package src.hangman;
+package hangman;
 
-import src.Game;
 import java.util.Scanner;
 import java.io.Console;
 
@@ -15,14 +14,12 @@ if (console == null) {
 
 */
 
-public class Hangman implements Game{
+public class Hangman{
  
     public Hangman(){
         start();
     }
 
-   
-    @Override
     public void start(){
         // Create player1
         // Player player1 = new Player();

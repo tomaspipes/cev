@@ -1,6 +1,9 @@
 package hangman;
 
 import javax.swing.*;
+
+import common.Player;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +55,13 @@ public class Game {
         infoPanel.add(wrongLettersLabel, BorderLayout.SOUTH);
 
         JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.add(hangmanPanel, BorderLayout.CENTER);
+        topPanel.add(hangmanPanel, BorderLayout.EAST);
         topPanel.add(infoPanel, BorderLayout.WEST);
 
         wordLabel = new JLabel(formatCurrentGuess());
         wordLabel.setFont(new Font("Arial", Font.BOLD, 20));
         wordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         guessField = new JTextField();
         JButton guessButton = new JButton("Adivinhar");
@@ -128,8 +132,18 @@ public class Game {
     }
 
     private void returnToMenu() {
-        mainPanel.removeAll();
-        new GameGUI().setupMainFrame(); // Chama a tela inicial
+    	 mainPanel.removeAll();
+    	 mainPanel.revalidate();
+    	 mainPanel.repaint();
+    	 
+    	 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+    	    
+    	    if (topFrame != null) {
+    	        topFrame.dispose(); // Completely close and remove the current window
+    	    }
+        
+        
+        GameGUI.setupMainFrame(); // Opens the new main frame
     }
     
 }
