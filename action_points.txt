@@ -1,5 +1,0 @@
--> Decouple players from each game, meaning that the players will be instatiated in the GameHub.java class and we should not create
-separate Players per game. 
-Remove PlayerTicTacToe.java and only keep Player.java, with the extra funcionality that PlayerTicTacToe has.
-
--> Also, decouple the symbol for the player from the game.

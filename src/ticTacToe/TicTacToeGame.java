@@ -1,7 +1,7 @@
 package src.ticTacToe;
 
-import src.Game;
-import src.Player;
+import src.common.Game;
+import src.common.Player;
 
 public class TicTacToeGame implements Game {
     private Board board;

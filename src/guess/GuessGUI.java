@@ -1,6 +1,6 @@
 package src.guess;
 
-import src.Player;
+import src.common.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -208,7 +208,7 @@ public class GuessGUI {
                  //lógica
                  if (game.checkGuess(guess)) {
                 	 //vitória
-                     victorypanel();
+                     victoryPanel();
                  } else if (game.isHigher(guess)) {                	 
                 	 //correto é maior que guess
                      correctionLabel.setText("Errado! O número correto é maior que " + guess + ".");
@@ -225,7 +225,7 @@ public class GuessGUI {
         	 				
 			}        
          
-         private void victorypanel() {
+         private void victoryPanel() {
         	 
         	 
         	 panel.removeAll();

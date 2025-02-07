@@ -1,4 +1,4 @@
-package hangman;
+package src.hangman;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class DifficultyWordChosing {
+
+    // Constructor initializes chosenWord to null
+    public DifficultyWordChosing() {
+        this.chosenWord = null;
+    }
     
 	// Word lists for each difficulty
     private String[] easyWords = {
@@ -62,10 +67,7 @@ public class DifficultyWordChosing {
     }
     
     
-    // Constructor initializes chosenWord to null
-    public DifficultyWordChosing() {
-        this.chosenWord = null;
-    }
+   
 
     // Getters for chosen word and difficulty
     public String getChosenWord() {
