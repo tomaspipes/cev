@@ -10,10 +10,11 @@ public class HangmanGUI {
     private static JFrame mainFrame;
     private static JPanel mainPanel;
     private static DifficultyWordChosing difficultyWordChosing;
-    
+    private static Player player;
          
-    public HangmanGUI() {
+    public HangmanGUI(Player player) {
         setupMainFrame();
+        this.player = player;
         this.difficultyWordChosing = new DifficultyWordChosing();
     }
 
@@ -29,7 +30,7 @@ public class HangmanGUI {
    
     static void setupMainPanel() {
         mainPanel = new JPanel(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Bem-Vindo ao Hangman!");
+        JLabel welcomeLabel = new JLabel("Bem-Vindo ao Hangman " +player.getName()+ "!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 30));
         welcomeLabel.setBounds(200, 200, 600, 50); // Specify exact location and size
@@ -39,8 +40,6 @@ public class HangmanGUI {
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.PLAIN, 18));
         
-        //Se tiver que adicionar menu para escolha do jogador, nesta linha a seguir:
-        //Em vez de chamar showDifficultySelection -> chama choosePlayerName()
         startButton.addActionListener(e -> showDifficultySelection(startButton));
         startButton.setBounds(450, 600, 100, 50);
         mainFrame.add(startButton, BorderLayout.SOUTH );
@@ -91,9 +90,5 @@ public class HangmanGUI {
         
         Player player = new Player("Jogador");
         new HangmanGame(mainPanel, player, word);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(HangmanGUI::new);
     }
 }
