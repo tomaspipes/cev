@@ -1,18 +1,18 @@
-package hangman;
+package src.hangman;
 
 import javax.swing.*;
 
-import common.Player;
+import src.common.Player;
 
 import java.awt.*;
 
-public class GameGUI {
+public class HangmanGUI {
     private static JFrame mainFrame;
     private static JPanel mainPanel;
     private static DifficultyWordChosing difficultyWordChosing;
     
          
-    public GameGUI() {
+    public HangmanGUI() {
         setupMainFrame();
         this.difficultyWordChosing = new DifficultyWordChosing();
     }
@@ -83,8 +83,6 @@ public class GameGUI {
     
         }
        
-        
-        
 
     private static void startGame(String difficulty) {
         difficultyWordChosing.getRandomWord(difficulty);
@@ -92,10 +90,10 @@ public class GameGUI {
         String word = difficultyWordChosing.getChosenWord();
         
         Player player = new Player("Jogador");
-        new Game(mainPanel, player, word);
+        new HangmanGame(mainPanel, player, word);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(GameGUI::new);
+        SwingUtilities.invokeLater(HangmanGUI::new);
     }
 }

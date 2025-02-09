@@ -1,6 +1,6 @@
 package src.guess;
 
-import src.Player;
+import src.common.Player;
 
 public class PlayerGuess extends Player{
     private String name;
