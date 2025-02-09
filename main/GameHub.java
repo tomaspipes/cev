@@ -102,11 +102,7 @@ public class GameHub {
             new GuessGUI(player1);
             CommandLogger.log("Guess the Number game started by " + player1.getName());
         } else if ("Hangman".equals(gameName)) {
-            JFrame frame = new JFrame("Hangman");
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setSize(600, 400);
-            frame.add(new HangmanGUI(player1)); // Ensure you pass the correct argument
-            frame.setVisible(true);
+            SwingUtilities.invokeLater(HangmanGUI::new);
             CommandLogger.log("Hangman game started by " + player1.getName());
         }
             gameWindow.dispose();
