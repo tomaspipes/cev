@@ -102,8 +102,8 @@ public class GameHub {
             new GuessGUI(player1);
             CommandLogger.log("Guess the Number game started by " + player1.getName());
         } else if ("Hangman".equals(gameName)) {
-            new HangmanGUI(player1);
-        	CommandLogger.log("Hangman game started by " + player1.getName());
+            SwingUtilities.invokeLater(HangmanGUI::new);
+            CommandLogger.log("Hangman game started by " + player1.getName());
         }
             gameWindow.dispose();
         });
