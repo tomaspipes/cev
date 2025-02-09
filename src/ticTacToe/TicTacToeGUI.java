@@ -46,8 +46,8 @@ public class TicTacToeGUI extends JFrame {
 
     private void handleButtonClick(int row, int col) {
         if (game.getBoard().makeMove(row, col, game.getCurrentPlayer().getSymbol())) {
-            buttons[row][col].setText(String.valueOf(game.getCurrentPlayer().getSymbol())); // Ensure the symbol is set
-            buttons[row][col].setEnabled(false); // Disable the button after the move
+            buttons[row][col].setText(String.valueOf(game.getCurrentPlayer().getSymbol()));
+            buttons[row][col].setEnabled(false);
 
             if (game.checkWinner()) {
                 JOptionPane.showMessageDialog(this, "Player " + game.getCurrentPlayer().getName() + " wins!");
@@ -79,7 +79,7 @@ public class TicTacToeGUI extends JFrame {
                 buttons[i][j].setEnabled(true);
             }
         }
-        updateStatus(); // Reset status label when the game restarts
+        updateStatus();
     }
 }
 
