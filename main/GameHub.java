@@ -1,10 +1,7 @@
 package main;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
+import java.util.Scanner;
 import src.common.Player;
 import src.guess.GuessGUI;
 import src.ticTacToe.TicTacToeGame;
@@ -23,6 +20,22 @@ public class GameHub {
 
     public GameHub() {
         displayGamesMenu();
+        CommandLogger.log("GameHub inicializado");
+        startConsoleListener();
+    }
+
+    public void startConsoleListener() {
+        new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                String input = scanner.nextLine();
+                if ("Hub".equalsIgnoreCase(input)) {
+                    gameWindow.repaint();
+                    gameWindow.dispose();
+                    displayGamesMenu();
+                }
+            }
+        }).start();
     }
 
     public void displayGamesMenu() {
@@ -87,8 +100,14 @@ public class GameHub {
 
         if ("GuessTheNumber".equals(gameName)) {
             new GuessGUI(player1);
+            CommandLogger.log("Guess the Number game started by " + player1.getName());
         } else if ("Hangman".equals(gameName)) {
-            new HangmanGUI();
+            JFrame frame = new JFrame("Hangman");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(600, 400);
+            frame.add(new HangmanGUI(player1)); // Ensure you pass the correct argument
+            frame.setVisible(true);
+            CommandLogger.log("Hangman game started by " + player1.getName());
         }
             gameWindow.dispose();
         });
@@ -122,6 +141,7 @@ public class GameHub {
             player1.setSymbol('X');
             player2.setSymbol('O');
             new TicTacToeGame(player1, player2);
+            CommandLogger.log("Tic tac toe game started by " + player1.getName() + " and " + player2.getName());
             gameWindow.dispose();
         });
         twoPlayersMenuPanel.add(startButton);
