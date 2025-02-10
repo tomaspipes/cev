@@ -1,7 +1,6 @@
-package src.guess;
+package guess;
 
-import src.common.Player;
-
+import common.Player;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,13 +66,13 @@ public class GuessGUI {
          startButton.setFont(new Font("Arial", Font.BOLD, 18));
          startButton.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				startGame();
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startGame();
+
+            }
          });
-         
+
          //add everything to panel
          panel.add(welcomeLabel);
          panel.add(difficultyLabel);
@@ -266,7 +265,5 @@ public class GuessGUI {
              // Atualiza o painel
              panel.revalidate();
              panel.repaint();
-         }
-         
-         
-         }
+         }         
+}

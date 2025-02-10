@@ -1,4 +1,4 @@
-package src.ticTacToe;
+package ticTacToe;
 
 public class Board {
     private char[][] grid;

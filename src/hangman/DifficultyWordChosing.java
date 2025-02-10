@@ -1,4 +1,4 @@
-package src.hangman;
+package hangman;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class DifficultyWordChosing {
         this.chosenWord = null;
     }
     
-	// Word lists for each difficulty
+    // Lista de palavras possiveis para adivinhar
     private String[] easyWords = {
             "Cao", "Gato", "Sol", "Lua", "Casa", "Carro", "Livro", "Bola", "Peixe", "Arvore",
             "Agua", "Rua", "Maca", "Escola", "Amigo", "Festa", "Pao", "Chave", "Bebe", "Rato", "Pato"
@@ -41,12 +41,13 @@ public class DifficultyWordChosing {
             "Polirribonucleotídeo", "Pseudopseudohipoparatireoidismo", "Metodologicamente"
     };
 
-    private String chosenWord; // The selected word
-    private String difficulty; // Selected difficulty level
+    private String chosenWord; // String para a palavra escolhida de forma aleatória
+    private String difficulty; // String para a dificuldade escolhida
 
     public void getRandomWord(String difficulty) {
         Random random = new Random();
-        
+
+        // Switch Case para determinar a dificuldade e em que array escolher a palavra aleatória
         switch(difficulty){
             case "Fácil" :
             this.chosenWord = easyWords[random.nextInt(easyWords.length)];
@@ -65,9 +66,6 @@ public class DifficultyWordChosing {
             break;
         }
     }
-    
-    
-   
 
     // Getters for chosen word and difficulty
     public String getChosenWord() {

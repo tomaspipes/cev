@@ -1,12 +1,11 @@
 package main;
+
 import java.awt.*;
-
 import java.util.Scanner;
-import src.common.Player;
-import src.guess.GuessGUI;
-import src.ticTacToe.TicTacToeGame;
-import src.hangman.HangmanGUI;
-
+import common.Player;
+import guess.GuessGUI;
+import ticTacToe.TicTacToeGame;
+import hangman.HangmanGUI;
 import javax.swing.*;
 
 public class GameHub {
