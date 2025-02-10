@@ -1,8 +1,8 @@
-package src.hangman;
+package hangman;
 
 import javax.swing.*;
 
-import src.common.Player;
+import common.Player;
 
 import java.awt.*;
 import java.util.ArrayList;

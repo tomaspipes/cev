@@ -1,4 +1,4 @@
-package src.guess;
+package guess;
 
 import java.util.Random;
 
