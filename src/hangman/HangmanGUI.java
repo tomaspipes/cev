@@ -10,11 +10,9 @@ public class HangmanGUI {
     private static JFrame mainFrame;
     private static JPanel mainPanel;
     private static DifficultyWordChosing difficultyWordChosing;
-    private static Player player;
          
-    public HangmanGUI(Player player) {
+    public HangmanGUI() {
         setupMainFrame();
-        this.player = player;
         this.difficultyWordChosing = new DifficultyWordChosing();
     }
 
@@ -30,7 +28,7 @@ public class HangmanGUI {
    
     static void setupMainPanel() {
         mainPanel = new JPanel(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Bem-Vindo ao Hangman " +player.getName()+ "!");
+        JLabel welcomeLabel = new JLabel("Bem-Vindo ao Hangman !");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 30));
         welcomeLabel.setBounds(200, 200, 600, 50); // Specify exact location and size
